@@ -2,7 +2,6 @@
 using BlogAPI.Core.Configuration;
 using BlogAPI.Core.Database;
 using BlogAPI.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace BlogAPI
 {
@@ -10,6 +9,8 @@ namespace BlogAPI
     {
         static void Main(string[] args)
         {
+            
+
             try
             {
                 var config = BlogConfig.ReadBlogConfig();
@@ -21,6 +22,8 @@ namespace BlogAPI
                 Console.WriteLine("Using default config settings.");
                 BlogConfig.TheConfig = BlogConfig.GetDefaultBlogConfig();
             }
+
+            
 
             using var db = new BloggingDbContext();
             // Note: This sample requires the database to be created before running.
@@ -54,6 +57,33 @@ namespace BlogAPI
             Console.WriteLine("Delete the blog");
             db.Remove(blog);
             db.SaveChanges();
+
+            var builder = WebApplication.CreateBuilder(args);
+
+            // Add services to the container.
+
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+
+            app.MapControllers();
+
+            app.Run();
         }
     }
 }
