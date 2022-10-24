@@ -3,7 +3,7 @@
 ## How to run migration?
 
 - First of all, install `dotnet-ef` command if you haven't: `dotnet tool install --global dotnet-ef`
-- Then do `dotnet ef database update`
+- Then do `dotnet ef migrations add MigrationName` and `dotnet ef database update`
 
 <hr/>
 

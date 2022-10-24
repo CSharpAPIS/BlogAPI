@@ -23,8 +23,9 @@ namespace BlogAPI.Models
         /// the content of this post.
         /// </summary>
         public string Content { get; set; }
-
-        public int BlogId { get; set; }
-        public Blog Blog { get; set; }
+        /// <summary>
+        /// Id of the blog that this post relates to.
+        /// </summary>
+        public int ParentBlog { get; set; }
     }
 }

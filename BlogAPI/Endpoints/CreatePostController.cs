@@ -29,7 +29,7 @@ namespace BlogAPI.Endpoints
         [HttpGet(Name = "GetCreatePost")]
         public Post Get()
         {
-            return new() { BlogId = 12 };
+            return null;
         }
         [HttpPost(Name = "PostCreatePost")]
         public async Task<EndpointResponse<CreatePostResult>> Post()

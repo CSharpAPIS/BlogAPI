@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using BlogAPI.Models;
 using BlogAPI.Core.Configuration;
+using Microsoft.Data.Sqlite;
 
 namespace BlogAPI.Core.Database
 {
@@ -26,13 +27,18 @@ namespace BlogAPI.Core.Database
 
         // The following configures EF to create a Sqlite database file in the
         // special "local" folder for your platform.
-        protected override void OnConfiguring(DbContextOptionsBuilder options) =>
-#if USE_SQLITE2
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+
+
+#if USE_SQLITE
             options.UseSqlite($"Data Source={DbPath}");
+            SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
 #else
             options.UseSqlServer(!string.IsNullOrWhiteSpace(DbUrl) ? DbUrl : 
-                @"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True");
+                @"Server=(localdb)\mssqllocaldb;Database=BlogAPI;Trusted_Connection=True");
 #endif
+        }
 
         public string GetDbPath() => DbPath;
         public string GetDbURL() => DbUrl;

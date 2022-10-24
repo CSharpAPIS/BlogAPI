@@ -13,7 +13,7 @@ namespace BlogAPI.Models
         /// </summary>
         public int BlogId { get; set; }
         /// <summary>
-        /// 
+        /// The title of this blog.
         /// </summary>
         public string BlogTitle { get; set; }
         /// <summary>

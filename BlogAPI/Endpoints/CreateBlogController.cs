@@ -13,8 +13,8 @@ using BlogAPI.Core;
 using BlogAPI.Core.Database;
 using BlogAPI.Core.Configuration;
 using System.Collections;
-using BlogAPI.Endpoints.Response.Types;
 using BlogAPI.Endpoints.Response;
+using BlogAPI.Endpoints.Response.Types.Results;
 
 namespace BlogAPI.Endpoints
 {
@@ -26,17 +26,19 @@ namespace BlogAPI.Endpoints
         {
             get => APIClient.DbContext;
         }
-        [HttpGet(Name = "GetCreatePost")]
+        [HttpGet(Name = "GetCreateBlog")]
         public Post Get()
         {
-            return new() { BlogId = 12 };
+            return null;
         }
-        [HttpPost(Name = "PostCreatePost")]
+        [HttpPost(Name = "PostCreateBlog")]
         public async Task<EndpointResponse<CreatePostResult>> Post()
         {
             using var reader = new StreamReader(Request.Body);
             var content = await reader.ReadToEndAsync();
             var userData = JsonSerializer.Deserialize<Hashtable>(content);
+            var userToken = Request.Headers["user-token"];
+            
 
             // Create
             Console.WriteLine("Inserting a new blog");
