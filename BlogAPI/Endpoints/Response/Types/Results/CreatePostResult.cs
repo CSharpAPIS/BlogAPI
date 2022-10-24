@@ -1,4 +1,4 @@
-﻿namespace BlogAPI.Endpoints.Response.Types
+﻿namespace BlogAPI.Endpoints.Response.Types.Results
 {
     public class CreatePostResult : EndpointResult
     {

@@ -14,7 +14,7 @@ using BlogAPI.Core.Database;
 using BlogAPI.Core.Configuration;
 using System.Collections;
 using BlogAPI.Endpoints.Response;
-using BlogAPI.Endpoints.Response.Types;
+using BlogAPI.Endpoints.Response.Types.Results;
 
 namespace BlogAPI.Endpoints
 {
@@ -37,6 +37,7 @@ namespace BlogAPI.Endpoints
             using var reader = new StreamReader(Request.Body);
             var content = await reader.ReadToEndAsync();
             var userData = JsonSerializer.Deserialize<Hashtable>(content);
+
 
             // Create
             Console.WriteLine("Inserting a new blog");

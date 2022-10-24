@@ -1,5 +1,7 @@
 ﻿using BlogAPI.Core.Database;
+using Newtonsoft.Json.Serialization;
 using System;
+using System.Text.Json;
 
 namespace BlogAPI.Core
 {
@@ -26,7 +28,10 @@ namespace BlogAPI.Core
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
