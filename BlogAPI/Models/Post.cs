@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using BlogAPI.Core.Security;
 
 namespace BlogAPI.Models
 {
@@ -27,5 +28,11 @@ namespace BlogAPI.Models
         /// Id of the blog that this post relates to.
         /// </summary>
         public int ParentBlog { get; set; }
+        /// <summary>
+        /// Permissions required for users to view this post.
+        /// If this property is set to <see cref="UserPermission.BasicPermission"/>,
+        /// user doesn't need auth to get content of this post.
+        /// </summary>
+        public UserPermission RequiredPermissions { get; set; }
     }
 }

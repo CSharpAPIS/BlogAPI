@@ -1,4 +1,5 @@
 ﻿using BlogAPI.Core.Database;
+using BlogAPI.Core.Security;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Text.Json;
@@ -19,6 +20,10 @@ namespace BlogAPI.Core
 #else
             Console.WriteLine($"Microsoft SQL Server has started.");
 #endif
+
+            var requiredPermission = UserPermission.WriterPermission | UserPermission.VIPPermission;
+            var ok = requiredPermission.HasFlag(UserPermission.VIPPermission);
+            Console.Write(ok);
         }
 
         public virtual void StartAPI(string[] args)

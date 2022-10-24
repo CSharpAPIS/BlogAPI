@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlogAPI.Core.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,11 @@ namespace BlogAPI.Models
         /// The user identifier of the person who created this blog originally.
         /// </summary>
         public string CreatedBy { get; set; }
+        /// <summary>
+        /// Required permissions for a user to get content of posts from
+        /// this blog.
+        /// </summary>
+        public UserPermission RequiredPermissions { get; set; }
 
         /// <summary>
         /// A list of posts belonging to this blog.
