@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BlogAPI.Core;
 using BlogAPI.Core.Configuration;
 using BlogAPI.Core.Database;
 using BlogAPI.Models;
@@ -23,17 +24,13 @@ namespace BlogAPI
                 BlogConfig.TheConfig = BlogConfig.GetDefaultBlogConfig();
             }
 
-            
 
+            /*
             using var db = new BloggingDbContext();
             // Note: This sample requires the database to be created before running.
             Console.WriteLine($"Database path: {db.DbPath}.");
 
-            // Create
-            Console.WriteLine("Inserting a new blog");
-            var ok = db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-            db.SaveChanges();
-            Console.WriteLine(ok);
+            
 
             // Read
             Console.WriteLine("Querying for a blog");
@@ -57,33 +54,9 @@ namespace BlogAPI
             Console.WriteLine("Delete the blog");
             db.Remove(blog);
             db.SaveChanges();
-
-            var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+            */
+            using var apiClient = new APIClient(args);
+            apiClient.StartAPI(args);
         }
     }
 }

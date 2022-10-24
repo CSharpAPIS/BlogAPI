@@ -11,8 +11,17 @@ namespace BlogAPI.Models
 {
     public class Post
     {
+        /// <summary>
+        /// The id of this post, which should be set automatically by asp.net.
+        /// </summary>
         public int PostId { get; set; }
+        /// <summary>
+        /// the title of this post.
+        /// </summary>
         public string Title { get; set; }
+        /// <summary>
+        /// the content of this post.
+        /// </summary>
         public string Content { get; set; }
 
         public int BlogId { get; set; }
