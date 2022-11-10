@@ -43,7 +43,14 @@ namespace BlogAPI.Core.Security
         /// Permission of a user that only can EDIT the content of a post.
         /// </summary>
         WriterPermission        = 1 << 4,
+        /// <summary>
+        /// Permission of a dev user.
+        /// </summary>
+        DevPermission           = 1 << 5,
 
-
+        /// <summary>
+        /// Permission of an owner.
+        /// </summary>
+        OwnerPermission         = 1 << 6,
     }
 }

@@ -10,8 +10,6 @@ namespace BlogAPI
     {
         static void Main(string[] args)
         {
-            
-
             try
             {
                 var config = BlogConfig.ReadBlogConfig();

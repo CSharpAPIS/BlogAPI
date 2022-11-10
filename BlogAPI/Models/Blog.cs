@@ -32,14 +32,62 @@ namespace BlogAPI.Models
         /// </summary>
         public string CreatedBy { get; set; }
         /// <summary>
-        /// Required permissions for a user to get content of posts from
-        /// this blog.
+        /// Required permissions for a user to get content of posts (read) from
+        /// this blog. 
+        /// (each post does have its own permissions, which should be
+        /// checked as well; this property here applies to all posts of this blog).
         /// </summary>
-        public UserPermission RequiredPermissions { get; set; }
+        public UserPermission ReadPermissions { get; set; }
+        /// <summary>
+        /// Required permissions for a user to edit the content of posts (write)
+        /// from this blog.
+        /// (each post does have its own permissions, which should be
+        /// checked as well; this property here applies to all posts of this blog).
+        /// </summary>
+        public UserPermission WritePermissions { get; set; }
+        /// <summary>
+        /// Required permissions for a user to edit the content of posts (write)
+        /// from this blog.
+        /// </summary>
+        public UserPermission ModifyPermissions { get; set; }
 
         /// <summary>
         /// A list of posts belonging to this blog.
         /// </summary>
         public List<Post> Posts { get; } = new();
+
+        /// <summary>
+        /// Checks if the user with the passed-by arg permission can have
+        /// read-access to the posts of this blog or not.
+        /// </summary>
+        /// <param name="permission"></param>
+        /// <returns></returns>
+        public virtual bool CanRead(UserPermission permission)
+        {
+            return permission switch
+            {
+                UserPermission.OwnerPermission => true,
+                UserPermission.DevPermission => !ReadPermissions.HasFlag(UserPermission.OwnerPermission),
+                UserPermission.NotRegistered => ReadPermissions == UserPermission.NotRegistered,
+                _ => ReadPermissions.HasFlag(permission),
+            };
+        }
+
+        /// <summary>
+        /// Checks if the user with the passed-by arg permission can have
+        /// write-access to the posts of this blog or not.
+        /// </summary>
+        /// <param name="permission"></param>
+        /// <returns></returns>
+        public virtual bool CanWrite(UserPermission permission)
+        {
+            return permission switch
+            {
+                UserPermission.OwnerPermission => true,
+                UserPermission.DevPermission => !WritePermissions.HasFlag(UserPermission.OwnerPermission),
+                UserPermission.NotRegistered => WritePermissions == UserPermission.NotRegistered,
+                _ => WritePermissions.HasFlag(permission),
+            };
+        }
     }
 }

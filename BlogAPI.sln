@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogAPI", "BlogAPI\BlogAPI.csproj", "{CBA09FE4-3E5A-4C8F-90CF-6CB7CE73F8DF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogAPI.Tests", "Tests\BlogAPI.Tests\BlogAPI.Tests.csproj", "{2EFF7FAB-7794-4BFA-AB48-998ADADC45A9}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BEE437AB-85C8-4565-ACC2-1B3B9B57C30B}"
 	ProjectSection(SolutionItems) = preProject
 		MIGRATION.md = MIGRATION.md
@@ -20,6 +22,10 @@ Global
 		{CBA09FE4-3E5A-4C8F-90CF-6CB7CE73F8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBA09FE4-3E5A-4C8F-90CF-6CB7CE73F8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBA09FE4-3E5A-4C8F-90CF-6CB7CE73F8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EFF7FAB-7794-4BFA-AB48-998ADADC45A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EFF7FAB-7794-4BFA-AB48-998ADADC45A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EFF7FAB-7794-4BFA-AB48-998ADADC45A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EFF7FAB-7794-4BFA-AB48-998ADADC45A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

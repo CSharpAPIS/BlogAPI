@@ -12,6 +12,7 @@ namespace BlogAPI.Core.Database
     {
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<User> Users { get; set; }
 
         internal string DbPath { get; }
         internal string DbUrl { get; }
