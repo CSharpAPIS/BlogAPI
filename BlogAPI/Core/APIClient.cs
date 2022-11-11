@@ -1,4 +1,5 @@
-﻿using BlogAPI.Core.Database;
+﻿using BlogAPI.Core.Configuration;
+using BlogAPI.Core.Database;
 using BlogAPI.Core.Security;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -25,9 +26,17 @@ namespace BlogAPI.Core
         public virtual void StartAPI(string[] args)
         {
 
-            var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+            {
+                Args = args,
+                ApplicationName = "BlogAPI",
+                EnvironmentName = "Development",
+                WebRootPath = Directory.GetCurrentDirectory(),
+
+            });
 
             // Add services to the container.
+            
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
@@ -35,6 +44,13 @@ namespace BlogAPI.Core
             });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            if (BlogConfig.TheConfig.UseUrls != null && 
+                BlogConfig.TheConfig.UseUrls.Length != 0)
+            {
+                builder.WebHost.UseUrls(BlogConfig.TheConfig.UseUrls);
+            }
+
+
             //builder.Services.AddSwaggerGen();
 
             TheApp = builder.Build();
@@ -52,8 +68,17 @@ namespace BlogAPI.Core
 
             
             TheApp.MapControllers();
-
-            TheApp.Run();
+            if (BlogConfig.TheConfig.RunInThreadPool)
+            {
+                Task.Run(() =>
+                {
+                    TheApp.Run();
+                });
+            }
+            else
+            {
+                TheApp.Run();
+            }
         }
 
         public virtual async Task StopAPI(TimeSpan timeout)

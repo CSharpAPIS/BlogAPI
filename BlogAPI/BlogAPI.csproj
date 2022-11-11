@@ -10,7 +10,9 @@
 		<!--REMOVE THIS FROM HERE IF YOU WANT TO USE MS SQL SERVER-->
 		<DefineConstants>USE_SQLITE10</DefineConstants>
 	</PropertyGroup>
-
+	<ItemGroup>
+		<InternalsVisibleTo Include="BlogAPI.Tests" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />

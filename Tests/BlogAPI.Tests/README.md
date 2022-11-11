@@ -18,4 +18,7 @@ dotnet add ./Tests/BlogAPI.Tests/BlogAPI.Tests.csproj reference ./BlogAPI/BlogAP
 ```
 
 
+<hr/>
 
+* References:
+ - [Unit testing in .NET Core](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test)

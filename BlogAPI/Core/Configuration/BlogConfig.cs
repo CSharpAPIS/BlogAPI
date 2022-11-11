@@ -9,6 +9,7 @@ namespace BlogAPI.Core.Configuration
 {
     public class BlogConfig
     {
+        public const string DEFAULT_URL = "http://127.0.0.1:50101";
         public static BlogConfig TheConfig { get; set; }
 
 
@@ -19,6 +20,7 @@ namespace BlogAPI.Core.Configuration
             return new()
             {
                 UseSQLite = true,
+                UseUrls = new[] { DEFAULT_URL },
             };
         }
         /// <summary>
@@ -27,11 +29,18 @@ namespace BlogAPI.Core.Configuration
         /// </summary>
         public bool UseSQLite { get; set; }
         /// <summary>
+        /// Set to <c>true</c> when you want to call the .Run() method of ASP.NET
+        /// in ThreadPool, instead of the main thread.
+        /// Default is <c>false</c>.
+        /// </summary>
+        public bool RunInThreadPool { get; set; }
+        /// <summary>
         /// The url of the Microsoft SQL Server.
         /// </summary>
         /// <example>
         /// @"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True"
         /// </example>
         public string SQLServerUrl { get; set; }
+        public string[] UseUrls { get; set; }
     }
 }
