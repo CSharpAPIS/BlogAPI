@@ -41,6 +41,18 @@ namespace BlogAPI.Core.Configuration
         /// @"Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True"
         /// </example>
         public string SQLServerUrl { get; set; }
+        /// <summary>
+        /// Urls used for when making a web host.
+        /// </summary>
         public string[] UseUrls { get; set; }
+        /// <summary>
+        /// The Env name used for when making a web host.
+        /// </summary>
+        public string EnvironmentName { get; set; } = "";
+
+        /// <summary>
+        /// The Application name used for when making a web host.
+        /// </summary>
+        public string ApplicationName { get; set; } = "BlogAPI";
     }
 }

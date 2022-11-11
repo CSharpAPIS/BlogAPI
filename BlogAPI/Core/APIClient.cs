@@ -29,14 +29,13 @@ namespace BlogAPI.Core
             var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
             {
                 Args = args,
-                ApplicationName = "BlogAPI",
-                EnvironmentName = "Development",
+                ApplicationName = BlogConfig.TheConfig.ApplicationName,
+                EnvironmentName = BlogConfig.TheConfig.EnvironmentName,
                 WebRootPath = Directory.GetCurrentDirectory(),
 
             });
 
             // Add services to the container.
-            
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
