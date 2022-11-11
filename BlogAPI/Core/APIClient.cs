@@ -43,6 +43,8 @@ namespace BlogAPI.Core
             });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            //builder.Services.AddHealthChecks();
+
             if (BlogConfig.TheConfig.UseUrls != null && 
                 BlogConfig.TheConfig.UseUrls.Length != 0)
             {

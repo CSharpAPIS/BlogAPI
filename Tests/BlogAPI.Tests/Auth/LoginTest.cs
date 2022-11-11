@@ -19,8 +19,13 @@ namespace BlogAPI.Tests.Auth
             //Thread.Sleep(5000);
             //Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory
 
-            var response = Starter.SendRequestPost("http://localhost:50101/home", "hellooo");
+            var response = Starter.SendRequestGet(null);
 
+            if (response.IsSuccessStatusCode)
+            {
+                var content = Starter.ReadAsString(response.Content);
+                Assert.NotEmpty(content);
+            }
             Console.WriteLine("ok");
             
             Starter.Stop();

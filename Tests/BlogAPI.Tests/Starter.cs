@@ -87,8 +87,32 @@ public sealed class Starter : IDisposable
             Content = new StringContent(content),
         };
 
+        req.Options.TryAdd("Allow-Redirect", false);
+
         return client.Send(req);
     }
+
+
+    public static HttpResponseMessage SendRequestGet(string url = null)
+    {
+        if (url == null)
+        {
+            url = ServerUrl;
+        }
+        else if (url.StartsWith("/"))
+        {
+            url = ServerUrl + (url.EndsWith("/") ? url[..^1] : url);
+        }
+
+        var client = new HttpClient(new HttpClientHandler()
+        {
+            AllowAutoRedirect = false,
+        });
+        var req = new HttpRequestMessage(HttpMethod.Get, url);
+
+        return client.Send(req);
+    }
+
 
     public static string ReadAsString(HttpContent content)
     {
@@ -109,6 +133,7 @@ public sealed class Starter : IDisposable
         }
 
         _instance.Dispose();
+        _instance = null;
         return true;
     }
 
